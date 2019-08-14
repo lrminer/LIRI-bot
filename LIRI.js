@@ -4,6 +4,7 @@ const keys = require("./keys.js");
 const fs = require('fs');
 const axios = require('axios');
 const Spotify = require('node-spotify-api');
+const queryString = require('query-string');
 
 var spotify = new Spotify({
     id: keys.spotify.id,
@@ -19,14 +20,14 @@ const command = process.argv[2];
 
 //used for spotify
 // if no song is provided your program will default to "the Sign by Ace of Base"
-let query="";
+let query = "";
 if (process.argv[3]) {
     for (let i = 3; i < process.argv.length; i++) {
-        query += process.argv[i];
+        query += `${process.argv[i]} `;
         console.log(process.argv[i]);
         console.log('query= ' + query);
     }
-}   else {
+} else {
     console.log("Default: " + query);
     console.log('query= ' + query);
 
@@ -60,7 +61,14 @@ function spotifySearch() {
 }
 
 function searchOMDB() {
-    axios.get({})
+    params = {
+        t: query
+    };
+
+    axios.get('http://www.omdbapi.com/?apikey=trilogy&' + queryString.stringify(params))
+        .then(function (response) {
+            console.log(response.data);
+        });
 
 
 
