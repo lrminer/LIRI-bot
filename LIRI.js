@@ -41,7 +41,12 @@ switch (command) {
         }
         break;
     case 'movie-this':
-        searchOMDB();
+        if (query === "") {
+            query = "mr nobody";
+            searchOMDB();
+        } else {
+            searchOMDB();
+        }
         break;
     case 'do-what-it-says':
         doWhatItSays();
