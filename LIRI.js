@@ -11,12 +11,12 @@ var spotify = new Spotify({
     secret: keys.spotify.secret
 });
 
-console.log(keys.spotify.id);
-console.log(keys.spotify.secret);
+// console.log(keys.spotify.id);
+// console.log(keys.spotify.secret);
 
 // node liri.js spotify-this-song <song name here>
 
-const command = process.argv[2];
+let command = process.argv[2];
 
 //used for spotify
 // if no song is provided your program will default to "the Sign by Ace of Base"
@@ -24,25 +24,31 @@ let query = "";
 if (process.argv[3]) {
     for (let i = 3; i < process.argv.length; i++) {
         query += `${process.argv[i]} `;
-        console.log(process.argv[i]);
-        console.log('query= ' + query);
     }
 } else {
-    console.log("Default: " + query);
-    console.log('query= ' + query);
+    //console.log("Default: " + query);
+    //console.log('query= ' + query);
 
 }
 
 switch (command) {
     case 'spotify-this-song':
-        spotifySearch();
+        if (query === "") {
+            query = "the sign ace of base";
+            spotifySearch();
+        } else {
+            spotifySearch();
+        }
         break;
     case 'movie-this':
         searchOMDB();
         break;
-    case 3:
+    case 'do-what-it-says':
         doWhatItSays();
         break;
+    default:
+        console.log("Sorry, I dont understand what you mean. \nWhat would you like me to do?");
+
 }
 
 function spotifySearch() {
@@ -57,6 +63,7 @@ function spotifySearch() {
         console.log(data.tracks.items[0].name);
         console.log(data.tracks.items[0].preview_url);
         console.log(data.tracks.items[0].album.name);
+        console.log("Is this the song you were asking for?");
     });
 }
 
@@ -67,15 +74,16 @@ function searchOMDB() {
 
     axios.get('http://www.omdbapi.com/?apikey=trilogy&' + queryString.stringify(params))
         .then(function (response) {
-            //console.log(response.data);
-            console.log("Title:" + response.data.Title);
-            console.log("Year:" + response.data.Year);
-            console.log("IMDB Rating:" + response.data.Ratings[0].value);
-            console.log("Rotten Tomatoes Rating:" + response.data.Ratings[1].value);
-            console.log("Country:" + response.data.Country);
-            console.log("Language:" + response.data.Language);
-            console.log("Plot:" + response.data.Plot);
-            console.log("Actors:" + response.data.Title);
+            // console.log(response.data);
+
+            console.log("Title: " + response.data.Title);
+            console.log("Year: " + response.data.Year);
+            console.log("IMDB Rating: " + response.data.Ratings[0].Value);
+            console.log("Rotten Tomatoes Rating: " + response.data.Ratings[1].Value);
+            console.log("Country: " + response.data.Country);
+            console.log("Language: " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Actors: " + response.data.Actors);
         });
 
 
@@ -90,18 +98,27 @@ function searchOMDB() {
     // * Actors in the movie.
 }
 
-function searchSpotify(song) {
-
-}
-
 
 function doWhatItSays() {
-    fs.readFile('filename', 'utf8', function (err, data) {
+    fs.readFile('./random.txt', 'utf8', function (err, data) {
         if (err) {
             console.log(err);
         }
-        console.log(data);
-        var dataArr = data.split(",");
-        console.log(dataArr);
+        if (data) {
+            //console.log(data);
+            var dataArr = data.split(",");
+            //console.log(dataArr);
+            command = dataArr[0];
+            for (let i = 1; i < dataArr.length; i++) {
+                query += dataArr[i];
+            }
+            // console.log("command = " + command);
+            // console.log("query = " + query);
+            switch (command) {
+                case 'spotify-this-song':
+                    spotifySearch();
+                    break;
+            }
+        }
     });
 }
