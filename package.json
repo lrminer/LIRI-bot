@@ -1,0 +1,33 @@
+{
+  "name": "liri-bot",
+  "version": "1.0.0",
+  "description": "Language Interpretation and Recognition Interface",
+  "main": "LIRI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lrminer/LIRI-bot.git"
+  },
+  "keywords": [
+    "LIRI",
+    "Node.js",
+    "Command",
+    "Line",
+    "Application"
+  ],
+  "author": "Logan Miner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lrminer/LIRI-bot/issues"
+  },
+  "homepage": "https://github.com/lrminer/LIRI-bot#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "moment": "^2.24.0",
+    "node-spotify-api": "^1.1.1",
+    "querystring": "^0.2.0"
+  }
+}
