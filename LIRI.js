@@ -52,6 +52,9 @@ switch (command) {
     case 'do-what-it-says':
         doWhatItSays();
         break;
+    case 'call-me':
+        yourName();
+        break;
     default:
         console.log("Sorry, I dont understand what you mean. \nWhat would you like me to do?");
         console.log("\nExamples:\nspotify-this-song <song>\nmovie-this <movie>\ndo-what-it-says");
@@ -131,5 +134,13 @@ function doWhatItSays() {
                     break;
             }
         }
+    });
+}
+
+function yourName() {
+    let name = process.argv[3];
+    fs.writeFile('./name.txt', name, function (err,data){
+        if (err) return console.log(err);
+        console.log("Nice to meet you " + name + "!\nWhat would you like me to do?");
     });
 }
