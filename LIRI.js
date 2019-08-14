@@ -5,6 +5,7 @@ const fs = require('fs');
 const axios = require('axios');
 const Spotify = require('node-spotify-api');
 const queryString = require('query-string');
+const chalk = require('chalk');
 
 var spotify = new Spotify({
     id: keys.spotify.id,
@@ -64,11 +65,11 @@ function spotifySearch() {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-        console.log(data.tracks.items[0].artists[0].name);
-        console.log(data.tracks.items[0].name);
-        console.log(data.tracks.items[0].preview_url);
-        console.log(data.tracks.items[0].album.name);
-        console.log("Is this the song you were asking for?");
+        console.log("Artist: " + data.tracks.items[0].artists[0].name);
+        console.log("Track: " + data.tracks.items[0].name);
+        console.log("Album: " + data.tracks.items[0].album.name);
+        console.log("Preview: " + data.tracks.items[0].preview_url);
+        console.log(chalk.green("\nIs this the song you were asking for?"));
     });
 }
 
@@ -89,6 +90,8 @@ function searchOMDB() {
             console.log("Language: " + response.data.Language);
             console.log("Plot: " + response.data.Plot);
             console.log("Actors: " + response.data.Actors);
+            console.log("\nIs this the movie you were thinking of?");
+
         });
 
 

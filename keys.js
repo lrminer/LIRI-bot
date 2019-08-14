@@ -1,4 +1,4 @@
-console.log('One second please...');
+console.log('\nOne second please...\n');
 
 exports.spotify = {
   id: process.env.SPOTIFY_ID,
