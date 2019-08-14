@@ -54,6 +54,7 @@ switch (command) {
         break;
     default:
         console.log("Sorry, I dont understand what you mean. \nWhat would you like me to do?");
+        console.log("\nExamples:\nspotify-this-song <song>\nmovie-this <movie>\ndo-what-it-says");
 
 }
 
@@ -65,6 +66,8 @@ function spotifySearch() {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
+
+        console.log("Here is what I found on \n" + chalk.green(query) + ':\n');
         console.log("Artist: " + data.tracks.items[0].artists[0].name);
         console.log("Track: " + data.tracks.items[0].name);
         console.log("Album: " + data.tracks.items[0].album.name);
@@ -81,7 +84,7 @@ function searchOMDB() {
     axios.get('http://www.omdbapi.com/?apikey=trilogy&' + queryString.stringify(params))
         .then(function (response) {
             // console.log(response.data);
-
+            console.log("Here is what I found on \n" + chalk.green(query) + ':\n');
             console.log("Title: " + response.data.Title);
             console.log("Year: " + response.data.Year);
             console.log("IMDB Rating: " + response.data.Ratings[0].Value);
@@ -90,7 +93,7 @@ function searchOMDB() {
             console.log("Language: " + response.data.Language);
             console.log("Plot: " + response.data.Plot);
             console.log("Actors: " + response.data.Actors);
-            console.log("\nIs this the movie you were thinking of?");
+            console.log(chalk.green("\nIs this the movie you were thinking of?"));
 
         });
 
