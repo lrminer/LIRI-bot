@@ -141,7 +141,7 @@ function doWhatItSays() {
 }
 
 function yourName() {
-    name = process.argv[3];
+    name = query.trim();
     fs.writeFile('./name.txt', name, function (err, data) {
         if (err) return console.log(err);
         console.log("Nice to meet you " + name + "!");
