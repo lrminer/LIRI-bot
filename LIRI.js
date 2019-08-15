@@ -2,15 +2,19 @@ require('dotenv').config();
 
 const keys = require("./keys.js");
 const fs = require('fs');
+// const fsP = require('fs').promises;
 const axios = require('axios');
 const Spotify = require('node-spotify-api');
 const queryString = require('query-string');
 const chalk = require('chalk');
 
+let name = "";
+
 var spotify = new Spotify({
     id: keys.spotify.id,
     secret: keys.spotify.secret
 });
+
 
 // console.log(keys.spotify.id);
 // console.log(keys.spotify.secret);
@@ -56,8 +60,7 @@ switch (command) {
         yourName();
         break;
     default:
-        console.log("Sorry, I dont understand what you mean. \nWhat would you like me to do?");
-        console.log("\nExamples:\nspotify-this-song <song>\nmovie-this <movie>\ndo-what-it-says");
+        greet();
 
 }
 
@@ -138,9 +141,29 @@ function doWhatItSays() {
 }
 
 function yourName() {
-    let name = process.argv[3];
-    fs.writeFile('./name.txt', name, function (err,data){
+    name = process.argv[3];
+    fs.writeFile('./name.txt', name, function (err, data) {
         if (err) return console.log(err);
-        console.log("Nice to meet you " + name + "!\nWhat would you like me to do?");
+        console.log("Nice to meet you " + name + "!");
+        console.log("\nI shall call you that from now on.\nLet me know if you wish for me to call you something else.");
+
     });
 }
+
+function greet() {
+    fs.readFile('./name.txt', 'utf8', function (err, data) {
+        if (err) {
+            console.log(err);
+        }
+        if (data) {
+            name = data;
+            console.log("How are you doing today " + name + "?");
+
+            console.log("\nWhat would you like me to do?");
+            console.log("\nExamples:\nspotify-this-song <song>\nmovie-this <movie>\ndo-what-it-says");
+
+        }
+    });
+}
+
+
