@@ -45,7 +45,7 @@ You can utilize this feature by saying ```node liri call-me <your name>```. Liri
 
 ## Access Liri on your machine:
 1. Requires node.js (https://nodejs.org/en/download/)
-2. Clone this repository into a local directory
+2. Clone or download this repository into a local directory
 3. Move into the Nodemon repository
 4. In the command line, type
 * This will install all the necessary node modules that this program _depends_ upon.
