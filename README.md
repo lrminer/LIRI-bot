@@ -21,7 +21,7 @@ If you leave the song blank, Spotify will automatically search for the song "The
 
 You can also search for a movie using ```node liri movie-this <movie>```  
 
-![](./images/liri_liri_movie-this_movie.png)  
+![](./images/liri_movie-this_movie.png)  
 
 If you leave the song blank, Spotify will automatically search for the song "Mr. Nobody".  
 
@@ -29,7 +29,7 @@ If you leave the song blank, Spotify will automatically search for the song "Mr.
 
 You can also ask Liri to do what a random file says. The file contains a preloaded command and query as text and is accessed by Liri through the File System node module.
 
-![](./images/liri_liri_do-what-it-says.png)   
+![](./images/liri_do-what-it-says.png)   
 
 Lastly, you can ask Liri to call you by a specific name when you pass no additional arguments after ```liri```.  
 
