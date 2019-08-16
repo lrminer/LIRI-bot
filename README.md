@@ -1,3 +1,4 @@
+link to portfolio (https://lrminer.github.io/Portfolio/)
 # Liri Bot
 'Liri' is a Language Interpretation and Recognition Interface that is accessed through the command line. Liri is powered by several node packages that access the OMDB and Spotify search APIs.
 
@@ -36,6 +37,8 @@ Lastly, you can ask Liri to call you by a specific name when you pass no additio
 You can utilize this feature by saying ```node liri call-me <your name>```. Liri will save this value for later by using the File System node module.
 
 ![](./images/liri_call-me_name.png)   
+
+
 
 
 
