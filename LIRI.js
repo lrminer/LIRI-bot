@@ -10,13 +10,13 @@ const chalk = require('chalk');
 
 let name = "";
 
-var spotify = new Spotify({
-    id: keys.spotify.id,
-    secret: keys.spotify.secret
-});
+// {
+//     id: keys.spotify.id,
+//     secret: keys.spotify.secret
+// }
+var spotify = new Spotify(keys.spotify);
 
 
-// console.log(keys.spotify.id);
 // console.log(keys.spotify.secret);
 
 // node liri.js spotify-this-song <song name here>
@@ -157,6 +157,7 @@ function greet() {
         }
         if (data) {
             name = data;
+            
             console.log("How are you doing today " + name + "?");
 
             console.log("\nWhat would you like me to do?");
@@ -164,6 +165,10 @@ function greet() {
 
         }
     });
+}
+
+function newUser() {
+
 }
 
 
